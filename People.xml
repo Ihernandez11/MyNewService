@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--Izzys xml-->
+<People>
+  <Person ID="1">
+    <Name>Joe</Name>
+    <Age>35</Age>
+    <Job>Manager</Job>
+    <Classes>
+      <Class>Math</Class>
+      <Class>English</Class>
+    </Classes>
+  </Person>
+  <Person ID="2">
+    <Name>Jason</Name>
+    <Age>18</Age>
+    <Job>Software Engineer</Job>
+    <Classes>
+      <Class>History</Class>
+      <Class>Science</Class>
+    </Classes>
+  </Person>
+  <Person ID="3">
+    <Name>Lisa</Name>
+    <Age>53</Age>
+    <Job>Bakery Owner</Job>
+    <Classes>
+      <Class>Reading</Class>
+      <Class>Calculus</Class>
+    </Classes>
+  </Person>
+  <Person ID="4">
+    <Name>Mary</Name>
+    <Age>90</Age>
+    <Job>Nurse</Job>
+    <Classes>
+      <Class>Government</Class>
+      <Class>Geography</Class>
+    </Classes>
+  </Person>
+</People>
