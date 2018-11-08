@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +73,52 @@ namespace XMLSample
         }
 
             
+        public string SavePeople(List<Person> people)
+        {
+             
+            SqlConnection con;
+            //SqlDataReader reader;
+
+            con = new SqlConnection(Properties.Settings.Default.connectionString);
+            con.Open();
+
+            try
+            {
+                foreach (var p in people)
+                {
+                    foreach (var c in p.Classes)
+                    {
+                        SqlCommand cmd = new SqlCommand("Insert into Person (ID, Name, Age, Job, Class_ID) Values (@ID, @Name, @Age, @Job, @Class_ID)", con);
+                        cmd.Parameters.AddWithValue("@ID", p.ID);
+                        cmd.Parameters.AddWithValue("@Name", p.Name);
+                        cmd.Parameters.AddWithValue("@Age", p.Age);
+                        cmd.Parameters.AddWithValue("@Job", p.Job);
+                        cmd.Parameters.AddWithValue("@Class_ID", c.ID);
+
+                        cmd.ExecuteNonQuery();
+
+                        SqlCommand cmd2 = new SqlCommand("Insert into Classroom (ID, Name) Values (@ID, @Name)", con);
+                        cmd2.Parameters.AddWithValue("@ID", c.ID);
+                        cmd2.Parameters.AddWithValue("@Name", c.Name);
+                    }
+                }
+
+               
+                
+
+                con.Close();
+                return "Successfully added People and classrooms";
+            }
+
+            catch(Exception ex)
+            {
+                return ex.ToString();
+            }
+
+
+
+            
+        }
 
         
 
@@ -100,6 +147,12 @@ namespace XMLSample
                 );
 
             document.Save(@"C:\Users\Ihernandez\Documents\MWS\MyNewService\People.xml");
+        }
+
+
+        public void LoadXMLDoc()
+        {
+            var xmlFile = XDocument.Load(@"C: \Users\Ihernandez\Documents\MWS\MyNewService\People.xml");
         }
 
 
